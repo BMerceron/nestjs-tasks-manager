@@ -1,4 +1,4 @@
-import { AuthCredentialsDto } from './dto/auth-credentials.dto';
+import { AuthCredentialsDto } from '../auth/dto/auth-credentials.dto';
 import { EntityRepository, Repository } from 'typeorm';
 import { User } from './user.entity';
 import {
@@ -8,7 +8,7 @@ import {
 import * as bcrypt from 'bcrypt';
 
 @EntityRepository(User)
-export class UsersRepository extends Repository<User> {
+export class UserRepository extends Repository<User> {
   async createUser(authCredentialsDto: AuthCredentialsDto): Promise<void> {
     const { username, password } = authCredentialsDto;
 
@@ -28,5 +28,9 @@ export class UsersRepository extends Repository<User> {
         throw new InternalServerErrorException();
       }
     }
+  }
+
+  async getUsers(): Promise<User[]> {
+    return await this.find();
   }
 }

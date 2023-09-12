@@ -1,6 +1,6 @@
 import { TaskStatus } from './enums/task-status.enum';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { User } from 'src/auth/user.entity';
+import { User } from 'src/user/user.entity';
 import { Exclude } from 'class-transformer';
 
 @Entity()
@@ -17,7 +17,7 @@ export class Task {
   @Column()
   status: TaskStatus;
 
-  @ManyToOne((_type) => User, (user) => user.tasks, { eager: false })
+  @ManyToOne((type) => User, (user) => user.tasks, { eager: false })
   @Exclude({ toPlainOnly: true })
   user: User;
 }

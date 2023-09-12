@@ -28,8 +28,31 @@
 
 ## Installation
 
+### Prerequisites
+
+- Docker
+- Node.js
+- Yarn
+
+### Install nodes packages
+
 ```bash
 $ yarn install
+```
+
+### Install postgresql DB
+
+```bash
+# Build docker image
+$ docker build -t task-management .
+# Execute the container with docker image
+$ docker run --name task-management-container -p 5432:5432 -d task-management
+# To view the logs of the PostgreSQL container
+$ docker logs task-management-container
+# To stop the container
+$ docker stop task-management-container
+# To remove the container
+$ docker rm task-management-container
 ```
 
 ## Running the app

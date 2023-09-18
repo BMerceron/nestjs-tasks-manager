@@ -47,6 +47,8 @@ $ yarn install
 $ docker build -t task-management .
 # Execute the container with docker image
 $ docker run --name task-management-container -p 5432:5432 -d task-management
+# Start the container
+$ docker start task-management-container
 # To view the logs of the PostgreSQL container
 $ docker logs task-management-container
 # To stop the container

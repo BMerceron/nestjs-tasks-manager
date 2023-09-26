@@ -23,7 +23,7 @@ export class UserRepository extends Repository<User> {
       await this.save(user);
     } catch (error) {
       if (error.code === '23505') {
-        throw new ConflictException('Username already exists.');
+        throw new ConflictException(['Ce compte existe déjà.']);
       } else {
         throw new InternalServerErrorException();
       }

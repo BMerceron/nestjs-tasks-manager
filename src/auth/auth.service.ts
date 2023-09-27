@@ -30,7 +30,9 @@ export class AuthService {
       const accessToken = await this.jwtService.sign(payload);
       return { accessToken };
     } else {
-      throw new UnauthorizedException('Please check your login credentials.');
+      throw new UnauthorizedException([
+        'Le mot de passe ou votre indentifiant sont incorrects.',
+      ]);
     }
   }
 }

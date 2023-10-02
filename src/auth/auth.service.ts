@@ -21,14 +21,14 @@ export class AuthService {
 
   async signIn(
     authCredentialsDto: AuthCredentialsDto,
-  ): Promise<{ accessToken: string }> {
+  ): Promise<{ accessToken: string; user: object }> {
     const { username, password } = authCredentialsDto;
     const user = await this.usersRepository.findOne({ username });
 
     if (user && (await bcrypt.compare(password, user.password))) {
       const payload: JwtPayload = { username };
       const accessToken = await this.jwtService.sign(payload);
-      return { accessToken };
+      return { accessToken, user: { id: user.id, username: user.username } };
     } else {
       throw new UnauthorizedException([
         'Le mot de passe ou votre indentifiant sont incorrects.',

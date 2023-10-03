@@ -49,12 +49,23 @@ $ docker build -t task-management .
 $ docker run --name task-management-container -p 5432:5432 -d task-management
 # Start the container
 $ docker start task-management-container
+```
+
+After you create the docker container, you can run it and execute "yarn start:dev" to create tables in your database.
+
+Other usefull commands :
+
+```bash
 # To view the logs of the PostgreSQL container
 $ docker logs task-management-container
 # To stop the container
 $ docker stop task-management-container
 # To remove the container
 $ docker rm task-management-container
+# To list docker images
+$ docker images -a
+# To remove the image (replace <imageId> by your image id finded with docker images -a command)
+$ docker rmi <imageId>
 ```
 
 ## Running the app
